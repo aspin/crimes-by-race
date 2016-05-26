@@ -1,5 +1,6 @@
 export function configGraphs() {
-  Chart.defaults.global.defaultFontColor = '#6C9542';
+  // Chart.defaults.global.defaultFontColor = '#6C9542';
+  Chart.defaults.global.defaultFontColor = '#ffffff';
   Chart.defaults.global.defaultFontFamily = 'Source Sans Pro';
 
   Chart.defaults.global.legend.display = false;

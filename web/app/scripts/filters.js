@@ -28,7 +28,8 @@ function render(context, crimes, scaling, label) {
         computeCrimeTotal(crimes, 'black', scaling.black),
         computeCrimeTotal(crimes, 'asian', scaling.asian)
       ],
-      backgroundColor: 'rgba(108, 149, 66, 0.5)'
+      // backgroundColor: 'rgba(108, 149, 66, 0.5)'
+      backgroundColor: 'rgba(255, 255, 255, 0.5)'
     }
   ];
   return createBarGraph(context, labels, datasets);
@@ -78,7 +79,7 @@ export function configForm(barChart) {
       // more blacks in poverty
       // reducing count contribution of impoverished part
       _.forOwn(scaling, (scale, race) => {
-        scaling[race] = scale * (1 - (0.5 * Poverty[race]));
+        scaling[race] = scale * (1 - (0.50 * Poverty[race]));
       });
     }
     if (event.currentTarget.violentCrime.checked) {

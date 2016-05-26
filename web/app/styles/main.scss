@@ -56,6 +56,24 @@ body {
   }
 }
 
+.modal-content {
+  background-color: #22283F;
+  .modal-header {
+    border: none;
+    h4 {
+      font-size: 1.5em;
+    }
+  }
+
+  p {
+    font-size: 1.2em;
+  }
+
+  .modal-footer {
+    border: none;
+  }
+}
+
 #landing {
   .title {
     position: relative;
@@ -71,6 +89,15 @@ body {
   .content {
     padding-top: 5em;
     background-color: #3D4048;
+  }
+
+  blockquote p {
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.8em;
+    margin-bottom: 1.8em;
   }
 }
 

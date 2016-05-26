@@ -48,7 +48,7 @@
     </section>
 
     <section id="info">
-      <div class="content">
+      <div class="content vertical-center">
         <div class="container">
           <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -61,8 +61,18 @@
                 </footer>
               </blockquote>
               <p>
-                But the sheer number of white people in America should speak otherwise. At the very least,
-                we might
+                This is a small project examining why we generally perceive black people as "criminal."
+              </p>
+              <p>
+                I grew up with this stereotype all around it. But the more I looked at other factors
+                &mdash; at unequal policing, criminalization based on racial prevalence, unreported and
+                intracommunity crime &mdash; the more I've grown convinced there are many things wrong
+                that the simple numbers don't take into account.
+              </p>
+              <p>
+                So I've created this interactive chart below to see in what ways we can <em>tweak</em>
+                our statistics and see what difference that makes. Disclaimer: this involves some amount
+                of statistical guessing, and cannot take into possibly account everything in the world.
               </p>
             </div>
           </div>
@@ -90,7 +100,9 @@
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input name="poverty" type="checkbox"> Poverty
+                    <input name="poverty" type="checkbox">
+                    Poverty
+                    <a href="#" data-toggle="modal" data-target="#povertyModal">[?]</a>
                   </label>
                 </div>
               </div>
@@ -124,6 +136,38 @@
 
       </div>
     </section>
+
+    <div class="modal fade" id="povertyModal" tabindex="-1" role="dialog" aria-labelledby="povertyModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Scaling by Poverty</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              In its most recent publication, the US Census reports that over twice as many Blacks (26.2%)
+              are in poverty as Asians (12.0%) or Whites (10.1%). Furthermore, it's been reported that,
+              generally speaking, impoverished individuals are twice as likely to be arrested, and up to
+              four times for impoverished youth.
+            </p>
+            <p>
+              This only speaks to arrest rate. Policing tends to be heavier in poorer areas. Crime in
+              poorer areas is also more conspicuous. In fact, evidence generally points that the impact
+              of affluent, white-collared crime tends to have a much greater overall impact (e.g. monetary amount, people impacted).
+            </p>
+            <p>
+              So, this scale is meant to takes out the some of the factor in terms of different
+              income levels between different races (e.g. treats the impoverished portion of these statistics
+              as if they weren't).
+            </p>
+          </div>
+          <div class="modal-footer">
+            [wip sources]
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

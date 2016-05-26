@@ -297,6 +297,9 @@ export const Reporting = {
   white: 0.42
 };
 
+// https://www.census.gov/content/dam/Census/library/publications/2015/demo/p60-252.pdf
+// http://www.bjs.gov/index.cfm?ty=pbdetail&iid=5137 for 2x more
+// http://home.uchicago.edu/ludwigj/papers/HolzerEtAlChildhoodPoverty.pdf for 4x more for children
 export const Poverty = {
   asian: 0.12,
   black: 0.262,
