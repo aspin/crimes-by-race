@@ -2,6 +2,10 @@
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import fs from 'fs';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
 
@@ -24,7 +28,15 @@ gulp.task('styles', () => {
 });
 
 gulp.task('scripts', () => {
-  return gulp.src('app/scripts/**/*.js')
+  const b = browserify({
+    entries: 'app/scripts/main.js',
+    debug: true
+  });
+  return b.transform('babelify')
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+//  return gulp.src('app/scripts/**/*.js')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.babel())

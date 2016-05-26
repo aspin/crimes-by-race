@@ -7,17 +7,19 @@
     <title>web</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700"/>
     <!-- Place favicon.ico in the root directory -->
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/chartist/dist/chartist.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
@@ -26,44 +28,103 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">web</h3>
-      </div>
 
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>HTML5 Boilerplate</h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-          
-          <h4>Sass</h4>
-          <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
-          
-          <h4>Bootstrap</h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-          <h4>Modernizr</h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-          
+    <section id="landing" class="section-visible">
+      <div class="content vertical-center">
+        <div class="text-center title">
+          <h1>Some questions we may have about crime: </h1>
+          <h2 class="rotating-words">
+            <span class="visible">Are Blacks more prone to crime?</span>
+            <span>Statistically, why do so few Asians commit crimes?</span>
+            <span>What really is crime anyway?</span>
+            <span>What makes something more or less criminal?</span>
+            <span>Are more crimes committed by Blacks or Whites in America?</span>
+            <span>What about the proportion, scaled by relative population?</span>
+            <span>Which number is actually more important?</span>
+            <span>How does unequal policing play into this?</span>
+          </h2>
         </div>
       </div>
+    </section>
 
-      <div class="footer">
-        <p>♥ from the Yeoman team</p>
+    <section id="info">
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <blockquote>
+                <p>
+                  When we think about crime, we 'see black,' even when it's not present at all.
+                </p>
+                <footer>
+                  Lisa Bloom, Suspicion Nation
+                </footer>
+              </blockquote>
+              <p>
+                But the sheer number of white people in America should speak otherwise. At the very least,
+                we might
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    
+    </section>
+
+    <section id="graphs">
+      <div class="content vertical-center">
+        <div class="container">
+          <canvas id="chart"></canvas>
+          <form>
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Scaling Factors</h4>
+                <div class="checkbox">
+                  <label>
+                    <input name="scalePopulation" type="checkbox"> Population
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input name="reportedCrime" type="checkbox"> Estimated Reporting
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input name="poverty" type="checkbox"> Poverty
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h4>Types of Offenses</h4>
+                <div class="checkbox">
+                  <label>
+                    <input name="violentCrime" type="checkbox" checked> Violent Crime
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input name="propertyCrime" type="checkbox" checked> Property Crime
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input name="drugOffenses" type="checkbox" checked> Drug Offenses
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input name="other" type="checkbox" checked> Other
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -77,9 +138,17 @@
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="/bower_components/lodash/lodash.js"></script>
+    <script src="/bower_components/Chart.js/dist/Chart.js"></script>
+    <script src="/bower_components/chartist-plugin-pointlabels/dist/chartist-plugin-pointlabels.min.js"></script>
+    <script src="/bower_components/chartist-plugin-barlabels/dist/chartist-plugin-barlabels.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/velocity/velocity.js"></script>
+    <script src="/bower_components/velocity/velocity.ui.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
@@ -94,9 +163,9 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
-    
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
+
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/app.js"></script>
     <!-- endbuild -->
   </body>
 </html>
