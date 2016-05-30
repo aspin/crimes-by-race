@@ -48,7 +48,7 @@
     </section>
 
     <section id="info">
-      <div class="content vertical-center">
+      <div class="content vertical-center text-content">
         <div class="container">
           <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -71,8 +71,8 @@
               </p>
               <p>
                 So I've created this interactive chart below to see in what ways we can <em>tweak</em>
-                our statistics and see what difference that makes. Disclaimer: this involves some amount
-                of statistical guessing, and cannot take into possibly account everything in the world.
+                our statistics and see what difference that makes. Disclaimers are two sections down, but
+                be sure to check out each of the scaling justifications.
               </p>
             </div>
           </div>
@@ -81,7 +81,7 @@
     </section>
 
     <section id="graphs">
-      <div class="content vertical-center">
+      <div class="content vertical-center text-content">
         <div class="container">
           <canvas id="chart"></canvas>
           <form>
@@ -134,6 +134,42 @@
 
         </div>
 
+      </div>
+    </section>
+
+    <section id="disclaimers">
+      <div class="content vertical-center text-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <blockquote>
+                <p>
+                  There are three types of lies -- lies, damn lies, and statistics.
+                </p>
+                <footer>
+                  Benjamin Disraeli
+                </footer>
+              </blockquote>
+              <p>
+                As with any project involving statistics, I run the risk of conveying not sufficiently
+                justified assertions, misleading impressions, and blatantly lying. So for each of the
+                ways that I "scale", I've included tooltips indicating what data I'm basing
+                changes on.
+              </p>
+              <p>
+                Even then, combining multiple statistics (which are already approximations) greatly increases
+                errors and confidence intervals. So I've actually also been rather conservative with
+                the numbers, favoring rounding down and taking the lower of statistical ranges to be safe.
+                So hopefully, that means these graphs at least will underclaim differences from the
+                official numbers, not overclaim.
+              </p>
+              <p>
+                But hey, do still even then be sure to keep in mind that these are manipulations,
+                not official facts.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
