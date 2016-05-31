@@ -136,7 +136,7 @@ function getScaling(form) {
   }
   if (form.whiteCollar.checked) {
     _.forOwn(scaling, (scale, race) => {
-      scaling[race] = scale + WhiteCollar[race];
+      scaling[race] = scale * (1 + WhiteCollar[race]);
     });
   }
   return scaling;
