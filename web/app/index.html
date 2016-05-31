@@ -72,7 +72,10 @@
               <p>
                 So I've created this interactive chart below to see in what ways we can <em>tweak</em>
                 our statistics and see what difference that makes. Disclaimers are two sections down, but
-                be sure to check out each of the scaling justifications.
+                be sure to check out each of the scaling justifications. All data is from the
+                <a href="https://www.fbi.gov/about-us/cjis/ucr/crime-in-the-u.s/2014/crime-in-the-u.s.-2014/tables/table-43">
+                  FBI's 2014 Uniform Crime Reports
+                </a> (2015 isn't available yet).
               </p>
             </div>
           </div>
@@ -125,6 +128,13 @@
                   <input name="poverty" type="checkbox">
                   Poverty
                   <a href="#" data-toggle="modal" data-target="#povertyModal">[?]</a>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="whiteCollar" type="checkbox">
+                  White Collar
+                  <a href="#" data-toggle="modal" data-target="#whiteCollarModal">[?]</a>
                 </label>
               </div>
             </div>
@@ -280,12 +290,12 @@
               has a higher chance of being a criminal than other races.
             </p>
             <p>
-              First, be sure to untangle the two concepts of being criminal and being arrested -- think
+              First, be sure to untangle the two concepts of being criminal and being arrested &mdash; think
               of the other factors I'm trying to argue make this arrest number and actual criminal activity
               (whatever that means) not super accurate.
             </p>
             <p>
-              Second, and more importantly, many people justify may justify their stereotyping of Blacks
+              Second, and more importantly, many people may justify their stereotyping of Blacks
               as criminal from this population scaling. But consider from your individual perspective: you're
               statistically much more likely to be a victim of white perpetrator than of a black one by,
               again, sheer numbers.
@@ -294,6 +304,49 @@
               <p>
                 <a href="http://www.politifact.com/punditfact/statements/2015/apr/02/sally-kohn/sally-kohn-white-men-69-percent-arrested-violent/">
                   http://www.politifact.com/punditfact/statements/2015/apr/02/sally-kohn/sally-kohn-white-men-69-percent-arrested-violent/
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="whiteCollarModal" tabindex="-1" role="dialog" aria-labelledby="povertyModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">White Collar Crime</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              This one didn't turn out the way I expected. First, let's get some stats. Supposedly, 88% of white
+              collar crime goes unreported to the criminal justice system &mdash; people turn much more to their own
+              financial institutions instead. So I took the parts of the crime statistics that are considered
+              white collar crime (forgery, fraud, embezzlement, stolen property) and upped those by 88% for each
+              race. Turns out a higher portion of black crimes (relative to all crime reported here, not just
+              to black vs. white arrests) is for these categories.
+            </p>
+            <p>
+              This does, of course, discount the role of affluence. But I think something that might be worth
+              noting here is that this affluence statistic might be less relevant for changing the actual
+              ratios of crime among races, but more relevant toward the impacts of the crimes on the rest of
+              people. For example, it's become a common saying to refer to the bankers on Wall Street as criminals.
+              But in that case, which of the banks' employees  are we referring to? In a lot of cases,
+              we're thinking about the very elite (not to discount anything about everyone below that),
+              which is a very small number, with a disproportionately large impact. That sort of impact
+              measurement would be very hard to create though.
+            </p>
+            <p>
+              Another fun statistic: white collar crime is thought to cause more monetary damages total
+              than <em>every other crime category combined.</em> Whoa.
+            </p>
+            <div class="modal-footer">
+              <p>
+                <a
+                  href="http://www.fraudaid.com/library/2010-national-public-survey-on-white-collar-crime.pdf">
+                  http://www.fraudaid.com/library/2010-national-public-survey-on-white-collar-crime.pdf
                 </a>
               </p>
             </div>
@@ -323,7 +376,7 @@
             <p>
               It's worth noting that Asians have an exceptionally low reporting rate and it seems somewhat
               intuitive to agree that domestic or intracommunity violence or crime is reported less.
-              This argument likely also extends to more affluence white communities.
+              This argument likely also extends to more affluent white communities.
             </p>
             <p>
               Specifically in the case of rape, Asians report at an extremely low 16%, about half that

@@ -9,7 +9,8 @@ import {
   OtherCrime,
   Reporting,
   Poverty,
-  Incarceration
+  Incarceration,
+  WhiteCollar
 } from './data';
 
 const AMERICAN_POPULATION = 318900000;
@@ -131,6 +132,11 @@ function getScaling(form) {
   if (form.poverty.checked) {
     _.forOwn(scaling, (scale, race) => {
       scaling[race] = scale * (1 - (0.50 * Poverty[race]));
+    });
+  }
+  if (form.whiteCollar.checked) {
+    _.forOwn(scaling, (scale, race) => {
+      scaling[race] = scale + WhiteCollar[race];
     });
   }
   return scaling;

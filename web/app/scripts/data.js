@@ -295,3 +295,11 @@ export const Incarceration = {
   black: 73644,
   white: 115177
 };
+
+// increasing embezzelment, fraud, forgery, stolen property by 1/0.12
+// http://www.dailyfinance.com/2010/12/13/one-in-4-households-victim-of-white-collar-crime-report/
+export const WhiteCollar = {
+  asian: 0.157,
+  black: 0.233,
+  white: 0.1860
+};
