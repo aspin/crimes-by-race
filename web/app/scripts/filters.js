@@ -8,14 +8,15 @@ import {
   DrugCrime,
   OtherCrime,
   Reporting,
-  Poverty
+  Poverty,
+  Incarceration
 } from './data';
 
 const AMERICAN_POPULATION = 318900000;
 const AllCrimes = Object.keys(CrimeByRace);
 
 export function renderDefault(context) {
-  return render(context, AllCrimes, createScaling(1, 1, 1), 'Number of Arrests');
+  return render(context, AllCrimes, createScaling(1, 1, 1), 'Number of people arrests');
 }
 
 function render(context, crimes, scaling, label) {
@@ -28,7 +29,6 @@ function render(context, crimes, scaling, label) {
         computeCrimeTotal(crimes, 'black', scaling.black),
         computeCrimeTotal(crimes, 'asian', scaling.asian)
       ],
-      // backgroundColor: 'rgba(108, 149, 66, 0.5)'
       backgroundColor: 'rgba(255, 255, 255, 0.5)'
     }
   ];
@@ -36,12 +36,8 @@ function render(context, crimes, scaling, label) {
 }
 
 
-function update(chart, crimes, scaling, label) {
-  chart.data.datasets[0].data = [
-    computeCrimeTotal(crimes, 'white', scaling.white),
-    computeCrimeTotal(crimes, 'black', scaling.black),
-    computeCrimeTotal(crimes, 'asian', scaling.asian)
-  ];
+function update(chart, dataset, label) {
+  chart.data.datasets[0].data = dataset;
   chart.data.datasets[0].label = label;
   chart.update();
 }
@@ -59,47 +55,100 @@ function createScaling(white, black, asian) {
 
 
 export function configForm(barChart) {
-  $('form').change((event) => {
-    event.preventDefault();
-    let crimes = [];
-    let scaling = createScaling(1, 1, 1);
-    let label = 'Number of people arrested';
-
-    if (event.currentTarget.scalePopulation.checked) {
-      scaling = _.mapValues(Population, percent => (1 / (percent * AMERICAN_POPULATION)));
-      label = 'Percent of population arrested';
+  let showingOptions = true;
+  $('#graphs .toggle').click(() => {
+    if (showingOptions) {
+      $('#graphs .options').css('right', '-250px');
+    } else {
+      $('#graphs .options').css('right', '0px');
     }
-    if (event.currentTarget.reportedCrime.checked) {
-      _.forOwn(scaling, (scale, race) => {
-        scaling[race] = scale / Reporting[race];
-      });
-    }
-    if (event.currentTarget.poverty.checked) {
-      // poverty => twice as likely compared to higher income
-      // more blacks in poverty
-      // reducing count contribution of impoverished part
-      _.forOwn(scaling, (scale, race) => {
-        scaling[race] = scale * (1 - (0.50 * Poverty[race]));
-      });
-    }
-    if (event.currentTarget.violentCrime.checked) {
-      crimes.push(...ViolentCrime);
-    }
-    if (event.currentTarget.propertyCrime.checked) {
-      crimes.push(...PropertyCrime);
-    }
-    if (event.currentTarget.drugOffenses.checked) {
-      crimes.push(...DrugCrime);
-    }
-    if (event.currentTarget.other.checked) {
-      crimes.push(...OtherCrime);
-    }
-    update(
-      barChart,
-      crimes,
-      scaling,
-      label
-    );
+    showingOptions = !showingOptions;
   });
 
+  $('form').change((event) => {
+    event.preventDefault();
+    updateForm(event.currentTarget);
+    const label = getLabel(event.currentTarget);
+    const scaling = getScaling(event.currentTarget);
+    const crimes = getCrimes(event.currentTarget);
+    const dataSet = makeDataset(event.currentTarget, crimes, scaling);
+    update( barChart, dataSet, label );
+  });
+}
+
+function updateForm(form) {
+  if (form.showing.value == 'incarceration') {
+    $('#chart-offenses input[type=checkbox]').prop('disabled', true);
+  } else {
+    $('#chart-offenses input[type=checkbox]').prop('disabled', false);
+  }
+}
+
+function makeDataset(form, crimes, scaling) {
+  let dataset = [
+    computeCrimeTotal(crimes, 'white', scaling.white),
+    computeCrimeTotal(crimes, 'black', scaling.black),
+    computeCrimeTotal(crimes, 'asian', scaling.asian)
+  ];
+
+  if (form.showing.value == 'incarceration') {
+    dataset = [
+      Incarceration.white * scaling.white,
+      Incarceration.black * scaling.black,
+      Incarceration.asian * scaling.asian
+    ];
+  }
+  return dataset;
+}
+
+function getLabel(form) {
+  let verb = 'arrested';
+  let quantity = 'Number';
+  let noun = 'people';
+
+  if (form.scalePopulation.checked) {
+    quantity = 'Percent';
+    noun = 'population';
+  }
+
+  if (form.showing.value == 'incarceration') {
+    verb = 'incarcerated';
+  }
+
+  return `${ quantity } of ${ noun } ${ verb }`;
+}
+
+function getScaling(form) {
+  let scaling = createScaling(1, 1, 1);
+  if (form.scalePopulation.checked) {
+    scaling = _.mapValues(Population, percent => (1 / (percent * AMERICAN_POPULATION)));
+  }
+  if (form.reportedCrime.checked) {
+    _.forOwn(scaling, (scale, race) => {
+      scaling[race] = scale / Reporting[race];
+    });
+  }
+  if (form.poverty.checked) {
+    _.forOwn(scaling, (scale, race) => {
+      scaling[race] = scale * (1 - (0.50 * Poverty[race]));
+    });
+  }
+  return scaling;
+}
+
+function getCrimes(form) {
+  let crimes = [];
+  if (form.violentCrime.checked) {
+    crimes.push(...ViolentCrime);
+  }
+  if (form.propertyCrime.checked) {
+    crimes.push(...PropertyCrime);
+  }
+  if (form.drugOffenses.checked) {
+    crimes.push(...DrugCrime);
+  }
+  if (form.other.checked) {
+    crimes.push(...OtherCrime);
+  }
+  return crimes;
 }

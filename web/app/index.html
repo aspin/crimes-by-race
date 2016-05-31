@@ -64,7 +64,7 @@
                 This is a small project examining why we generally perceive black people as "criminal."
               </p>
               <p>
-                I grew up with this stereotype all around it. But the more I looked at other factors
+                I grew up with this stereotype all around me. But the more I looked at other factors
                 &mdash; at unequal policing, criminalization based on racial prevalence, unreported and
                 intracommunity crime &mdash; the more I've grown convinced there are many things wrong
                 that the simple numbers don't take into account.
@@ -84,56 +84,76 @@
       <div class="content vertical-center text-content">
         <div class="container">
           <canvas id="chart"></canvas>
+        </div>
+        <div class="options">
           <form>
-            <div class="row">
-              <div class="col-md-6">
-                <h4>Scaling Factors</h4>
-                <div class="checkbox">
-                  <label>
-                    <input name="scalePopulation" type="checkbox"> Population
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input name="reportedCrime" type="checkbox"> Estimated Reporting
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input name="poverty" type="checkbox">
-                    Poverty
-                    <a href="#" data-toggle="modal" data-target="#povertyModal">[?]</a>
-                  </label>
-                </div>
+            <div class="toggle">
+              <span class="glyphicon glyphicon-menu-hamburger"></span>
+              <span class="label">OPTIONS</span>
+            </div>
+            <h4>Show:</h4>
+            <div class="radio">
+              <label>
+                <input type="radio" name="showing" id="arrests" value="arrests" checked>
+                Arrests
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="showing" id="incarceration" value="incarceration">
+                Incarceration
+                <a href="#" data-toggle="modal" data-target="#incarcerationModal">[?]</a>
+              </label>
+            </div>
+            <div id="chart-scaling">
+              <h4>Scaling Factors:</h4>
+              <div class="checkbox">
+                <label>
+                  <input name="scalePopulation" type="checkbox"> Population
+                  <a href="#" data-toggle="modal" data-target="#populationModal">[?]</a>
+                </label>
               </div>
-              <div class="col-md-6">
-                <h4>Types of Offenses</h4>
-                <div class="checkbox">
-                  <label>
-                    <input name="violentCrime" type="checkbox" checked> Violent Crime
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input name="propertyCrime" type="checkbox" checked> Property Crime
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input name="drugOffenses" type="checkbox" checked> Drug Offenses
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input name="other" type="checkbox" checked> Other
-                  </label>
-                </div>
+              <div class="checkbox">
+                <label>
+                  <input name="reportedCrime" type="checkbox">
+                  Estimated Reporting
+                  <a href="#" data-toggle="modal" data-target="#reportingModal">[?]</a>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="poverty" type="checkbox">
+                  Poverty
+                  <a href="#" data-toggle="modal" data-target="#povertyModal">[?]</a>
+                </label>
+              </div>
+            </div>
+            <div id="chart-offenses">
+              <h4>Types of Offenses:</h4>
+              <div class="checkbox">
+                <label>
+                  <input name="violentCrime" type="checkbox" checked> Violent Crime
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="propertyCrime" type="checkbox" checked> Property Crime
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="drugOffenses" type="checkbox" checked> Drug Offenses
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="other" type="checkbox" checked> Other
+                </label>
               </div>
             </div>
           </form>
 
         </div>
-
       </div>
     </section>
 
@@ -178,7 +198,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Scaling by Poverty</h4>
+            <h4 class="modal-title">Poverty</h4>
           </div>
           <div class="modal-body">
             <p>
@@ -199,7 +219,129 @@
             </p>
           </div>
           <div class="modal-footer">
-            [wip sources]
+            <p>
+              <a href="https://www.census.gov/content/dam/Census/library/publications/2015/demo/p60-252.pdf">
+                https://www.census.gov/content/dam/Census/library/publications/2015/demo/p60-252.pdf
+              </a>
+            </p>
+            <p>
+              <a href="http://www.bjs.gov/index.cfm?ty=pbdetail&iid=5137">
+                http://www.bjs.gov/index.cfm?ty=pbdetail&iid=5137
+              </a>
+            </p>
+            <p>
+              <a href="http://home.uchicago.edu/ludwigj/papers/HolzerEtAlChildhoodPoverty.pdf">
+                http://home.uchicago.edu/ludwigj/papers/HolzerEtAlChildhoodPoverty.pdf
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="incarcerationModal" tabindex="-1" role="dialog" aria-labelledby="povertyModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Incarceration</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              This statistic doesn't do any sophisticated computation on say sentencing by crime
+              by race, but do keep in mind that there isn't any evidence to suggest that blacks
+              commit <em>worse</em> crimes than other races. In fact, it's worth thinking about what
+              we consider to be the <em>worst</em> crimes anyway -- white collar crime generally involves
+              many more people impacted broadly and much more money than say petty theft.
+            </p>
+            <div class="modal-footer">
+              <p>
+                <a href="https://www.bop.gov/about/statistics/statistics_inmate_race.jsp">
+                  https://www.bop.gov/about/statistics/statistics_inmate_race.jsp
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="populationModal" tabindex="-1" role="dialog" aria-labelledby="povertyModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Population</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              I want to add some caution to this statistic. It's clear from the numbers and intuition that the most crime
+              <em>is</em> committed by Whites by sheer ratio in America. But it also seems that a Black person
+              has a higher chance of being a criminal than other races.
+            </p>
+            <p>
+              First, be sure to untangle the two concepts of being criminal and being arrested -- think
+              of the other factors I'm trying to argue make this arrest number and actual criminal activity
+              (whatever that means) not super accurate.
+            </p>
+            <p>
+              Second, and more importantly, many people justify may justify their stereotyping of Blacks
+              as criminal from this population scaling. But consider from your individual perspective: you're
+              statistically much more likely to be a victim of white perpetrator than of a black one by,
+              again, sheer numbers.
+            </p>
+            <div class="modal-footer">
+              <p>
+                <a href="http://www.politifact.com/punditfact/statements/2015/apr/02/sally-kohn/sally-kohn-white-men-69-percent-arrested-violent/">
+                  http://www.politifact.com/punditfact/statements/2015/apr/02/sally-kohn/sally-kohn-white-men-69-percent-arrested-violent/
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="reportingModal" tabindex="-1" role="dialog" aria-labelledby="povertyModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Crime Reporting</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              These numbers are currently based only off mashing together some murder statistics and
+              general violent crime statistics, but I think this is worth thinking about.
+            </p>
+            <p>
+              In general, crime is mostly intraracial (for the ones that make sense, e.g. not drug use),
+              especially murder. However, crime is reported at a much different rate between races.
+              So even accepting the FBI's currently definitions of crime, the <em>actual</em> amounts
+              committed will not be exactly proportional to the reported statistics.
+            </p>
+            <p>
+              It's worth noting that Asians have an exceptionally low reporting rate and it seems somewhat
+              intuitive to agree that domestic or intracommunity violence or crime is reported less.
+              This argument likely also extends to more affluence white communities.
+            </p>
+            <p>
+              Specifically in the case of rape, Asians report at an extremely low 16%, about half that
+              of whites and blacks. And in the case of rape, it's extremely well known that most rape
+              happens by people the victim knows. Alas, there aren't really great statistics on rape victims
+              and so I can't really create a good scale for that.
+            </p>
+          <div class="modal-footer">
+            <p>
+              <a href="http://www.icasa.org/docs/reporting_to_police_1992-2000.pdf">
+                http://www.icasa.org/docs/reporting_to_police_1992-2000.pdf
+              </a>
+            </p>
+            <p>
+              <a href="https://www.fbi.gov/about-us/cjis/ucr/crime-in-the-u.s/2014/crime-in-the-u.s.-2014/tables/expanded-homicide-data/expanded_homicide_data_table_6_murder_race_and_sex_of_vicitm_by_race_and_sex_of_offender_2014.xls">
+                https://www.fbi.gov/about-us/cjis/ucr/crime-in-the-u.s/2014/crime-in-the-u.s.-2014/tables/expanded-homicide-data/expanded_homicide_data_table_6_murder_race_and_sex_of_vicitm_by_race_and_sex_of_offender_2014.xls
+              </a>
+            </p>
           </div>
         </div>
       </div>

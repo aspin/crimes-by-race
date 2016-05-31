@@ -9,7 +9,6 @@ $(document).ready(() => {
   const context = document.getElementById('chart');
   const barChart = renderDefault(context);
   configForm(barChart);
-
   configGraphs();
   rotateHeader();
   parallaxScroll();

@@ -267,23 +267,6 @@ export const CrimeByRace = {
     }
 };
 
-// "Property crime": {
-//     "islander": 1453,
-//     "black": 346392,
-//     "asian": 14129,
-//     "white": 838391,
-//     "total": 1218747,
-//     "native": 18382
-// },
-// "Violent crime": {
-//     "islander": 745,
-//     "black": 147002,
-//     "asian": 5453,
-//     "white": 231750,
-//     "total": 390233,
-//     "native": 5283
-// },
-
 export const Population = {
   "white": 0.724,
   "black": 0.126,
@@ -304,4 +287,11 @@ export const Poverty = {
   asian: 0.12,
   black: 0.262,
   white: 0.101
+};
+
+// https://www.bop.gov/about/statistics/statistics_inmate_race.jsp
+export const Incarceration = {
+  asian: 2900,
+  black: 73644,
+  white: 115177
 };
